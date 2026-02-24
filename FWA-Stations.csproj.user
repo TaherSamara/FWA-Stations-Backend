@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\Lenovo\source\repos\FWA-Stations\Properties\PublishProfiles\LiveProfile.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>D:\Paltel\FWA-System\FWA Backend\Properties\PublishProfiles\LiveProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

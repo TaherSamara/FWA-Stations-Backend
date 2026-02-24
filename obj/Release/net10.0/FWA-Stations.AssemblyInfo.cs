@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FWA-Stations")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4f600c2541fa172c815b6ee8876768edbafc363")]
 [assembly: System.Reflection.AssemblyProductAttribute("FWA-Stations")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FWA-Stations")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3517,11 +3517,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\FWA-Stations-Backend\\FWA-Stations.csproj",
+      "projectUniqueName": "D:\\Paltel\\FWA-System\\FWA Backend\\FWA-Stations.csproj",
       "projectName": "FWA-Stations",
-      "projectPath": "C:\\Users\\Lenovo\\source\\repos\\FWA-Stations-Backend\\FWA-Stations.csproj",
+      "projectPath": "D:\\Paltel\\FWA-System\\FWA Backend\\FWA-Stations.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\source\\repos\\FWA-Stations-Backend\\obj\\",
+      "outputPath": "D:\\Paltel\\FWA-System\\FWA Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

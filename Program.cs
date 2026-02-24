@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("corsPolicy", builder =>
     {
-        builder.WithOrigins("http://localhost:4200", "http://tahersamara.com", "http://www.tahersamara.com")
+        builder.WithOrigins("http://localhost:4200", "https://fwa.tahersamara.com")
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ax+4QB52lis=",
+  "dgSpecHash": "CBr/cYZF1fw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\FWA-Stations-Backend\\FWA-Stations.csproj",
+  "projectFilePath": "D:\\Paltel\\FWA-System\\FWA Backend\\FWA-Stations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

@@ -22,8 +22,8 @@ public class BaseController(IServiceProvider serviceProvider) : ControllerBase, 
     protected readonly HttpClient httpClient = serviceProvider.GetRequiredService<HttpClient>();
     protected readonly IWebHostEnvironment environment = serviceProvider.GetRequiredService<IWebHostEnvironment>();
 
-    protected static readonly string frontendBaseUrl = "http://tahersamara.com";
-    protected static readonly string backendBaseUrl = "http://craftmyapi.com";
+    protected static readonly string frontendBaseUrl = "https://fwa.tahersamara.com";
+    protected static readonly string backendBaseUrl = "https://fwa-backend.tahersamara.com";
 
     protected int GetMyID()
     {
