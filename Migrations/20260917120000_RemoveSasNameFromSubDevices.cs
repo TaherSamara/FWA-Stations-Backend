@@ -1,26 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace FWA_Stations.Migrations
 {
     /// <inheritdoc />
-    public partial class UodateWarehouseEntity : Migration
+    public partial class RemoveSasNameFromSubDevices : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "destination_location",
-                table: "Warehouse");
+                name: "sas_name",
+                table: "SubDevices");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "destination_location",
-                table: "Warehouse",
+                name: "sas_name",
+                table: "SubDevices",
                 type: "nvarchar(max)",
                 nullable: true);
         }

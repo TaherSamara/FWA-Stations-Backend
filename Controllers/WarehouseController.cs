@@ -11,7 +11,7 @@ namespace FWA_Stations.Controllers;
 [Route("api/[controller]")]
 public class WarehouseController(IServiceProvider serviceProvider) : BaseController(serviceProvider)
 {
-    [Authorize(Roles = "VIEW_ALL_DEVICES, VIEW_MY_DEVICES")]
+    [Authorize(Roles = "VIEW_ALL_WAREHOUSE_DEVICES, VIEW_MY_WAREHOUSE_DEVICES")]
     [HttpGet("list")]
     public async Task<IActionResult> List(string q, int size = 20, int page = 1)
     {
@@ -20,7 +20,7 @@ public class WarehouseController(IServiceProvider serviceProvider) : BaseControl
             .Include(x => x.insert_user)
             .Include(x => x.update_user);
 
-        if (!CanView("VIEW_ALL_DEVICES"))
+        if (!CanView("VIEW_ALL_WAREHOUSE_DEVICES"))
         {
             query = query.Where(x => x.assigned_user_id == GetMyID());
         }
@@ -62,7 +62,7 @@ public class WarehouseController(IServiceProvider serviceProvider) : BaseControl
     }
 
 
-    [Authorize(Roles = "ADD_DEVICE")]
+    [Authorize(Roles = "ADD_WAREHOUSE_DEVICE")]
     [HttpPost("add")]
     public async Task<IActionResult> Add([FromBody] WarehouseVM model)
     {
@@ -90,7 +90,7 @@ public class WarehouseController(IServiceProvider serviceProvider) : BaseControl
     }
 
 
-    [Authorize(Roles = "EDIT_DEVICE")]
+    [Authorize(Roles = "EDIT_WAREHOUSE_DEVICE")]
     [HttpPost("edit/{id}")]
     public async Task<IActionResult> Edit(int id, [FromBody] WarehouseVM model)
     {
@@ -143,7 +143,7 @@ public class WarehouseController(IServiceProvider serviceProvider) : BaseControl
     }
 
 
-    [Authorize(Roles = "DELETE_DEVICE")]
+    [Authorize(Roles = "DELETE_WAREHOUSE_DEVICE")]
     [HttpPost("delete/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
@@ -161,7 +161,7 @@ public class WarehouseController(IServiceProvider serviceProvider) : BaseControl
     }
 
 
-    [Authorize(Roles = "IMPORT_DEVICES")]
+    [Authorize(Roles = "IMPORT_WAREHOUSE_DEVICES")]
     [HttpPost("import")]
     public async Task<IActionResult> Import(IFormFile file)
     {

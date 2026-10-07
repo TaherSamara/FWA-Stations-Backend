@@ -86,10 +86,10 @@
         }
       }
     },
-    "/api/Stations/list": {
+    "/api/Common/search": {
       "get": {
         "tags": [
-          "Stations"
+          "Common"
         ],
         "parameters": [
           {
@@ -98,32 +98,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32",
-              "default": 20
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32",
-              "default": 1
-            }
           }
         ],
         "responses": {
@@ -133,116 +107,10 @@
         }
       }
     },
-    "/api/Stations/add": {
-      "post": {
-        "tags": [
-          "Stations"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StationsVM"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StationsVM"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/StationsVM"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Stations/edit/{id}": {
-      "post": {
-        "tags": [
-          "Stations"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StationsVM"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StationsVM"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/StationsVM"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Stations/delete/{id}": {
-      "post": {
-        "tags": [
-          "Stations"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Subscribers/list": {
+    "/api/Devices/list": {
       "get": {
         "tags": [
-          "Subscribers"
+          "Devices"
         ],
         "parameters": [
           {
@@ -279,7 +147,140 @@
             }
           },
           {
-            "name": "stationId",
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Devices/add": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevicesVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevicesVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevicesVM"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Devices/edit/{id}": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevicesVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevicesVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevicesVM"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Devices/delete/{id}": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Devices/import": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "parameters": [
+          {
+            "name": "device_type",
             "in": "query",
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -289,13 +290,133 @@
               ],
               "format": "int32"
             }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ContentType": {
+                    "type": "string"
+                  },
+                  "ContentDisposition": {
+                    "type": "string"
+                  },
+                  "Headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Length": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int64"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "FileName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Devices/export/{device_id}": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "parameters": [
           {
-            "name": "serviceTypes",
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/SubDevices/list": {
+      "get": {
+        "tags": [
+          "SubDevices"
+        ],
+        "parameters": [
+          {
+            "name": "q",
             "in": "query",
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 20
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
           }
         ],
         "responses": {
@@ -305,26 +426,26 @@
         }
       }
     },
-    "/api/Subscribers/add": {
+    "/api/SubDevices/add": {
       "post": {
         "tags": [
-          "Subscribers"
+          "SubDevices"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribersVM"
+                "$ref": "#/components/schemas/SubDevicesVM"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribersVM"
+                "$ref": "#/components/schemas/SubDevicesVM"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribersVM"
+                "$ref": "#/components/schemas/SubDevicesVM"
               }
             }
           },
@@ -337,10 +458,10 @@
         }
       }
     },
-    "/api/Subscribers/edit/{id}": {
+    "/api/SubDevices/edit/{id}": {
       "post": {
         "tags": [
-          "Subscribers"
+          "SubDevices"
         ],
         "parameters": [
           {
@@ -361,17 +482,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribersVM"
+                "$ref": "#/components/schemas/SubDevicesVM"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribersVM"
+                "$ref": "#/components/schemas/SubDevicesVM"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/SubscribersVM"
+                "$ref": "#/components/schemas/SubDevicesVM"
               }
             }
           },
@@ -384,10 +505,10 @@
         }
       }
     },
-    "/api/Subscribers/delete/{id}": {
+    "/api/SubDevices/delete/{id}": {
       "post": {
         "tags": [
-          "Subscribers"
+          "SubDevices"
         ],
         "parameters": [
           {
@@ -411,10 +532,10 @@
         }
       }
     },
-    "/api/Subscribers/ping/{ip}": {
+    "/api/SubDevices/ping/{ip}": {
       "post": {
         "tags": [
-          "Subscribers"
+          "SubDevices"
         ],
         "parameters": [
           {
@@ -426,33 +547,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Subscribers/import": {
-      "post": {
-        "tags": [
-          "Subscribers"
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "$ref": "#/components/schemas/IFormFile"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -681,13 +775,6 @@
               "format": "int32",
               "default": 1
             }
-          },
-          {
-            "name": "destinationLocation",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -908,6 +995,25 @@
           }
         }
       },
+      "DevicesVM": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "type": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      },
       "IFormFile": {
         "type": "string",
         "format": "binary"
@@ -929,13 +1035,7 @@
           }
         }
       },
-      "ServiceType": {
-        "type": "integer"
-      },
-      "StationsVM": {
-        "required": [
-          "name"
-        ],
+      "SubDevicesVM": {
         "type": "object",
         "properties": {
           "name": {
@@ -943,18 +1043,8 @@
               "null",
               "string"
             ]
-          }
-        }
-      },
-      "SubscribersVM": {
-        "required": [
-          "name",
-          "service_type",
-          "station_id"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
+          },
+          "station_name": {
             "type": [
               "null",
               "string"
@@ -966,13 +1056,13 @@
               "string"
             ]
           },
-          "unit_type": {
+          "order_number": {
             "type": [
               "null",
               "string"
             ]
           },
-          "link_mac_address": {
+          "unit_type": {
             "type": [
               "null",
               "string"
@@ -984,7 +1074,37 @@
               "string"
             ]
           },
+          "link_mac_address": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "connection_type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "speed": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
           "management_ip": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "management_vlan": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "wan_ip": {
             "type": [
               "null",
               "string"
@@ -997,12 +1117,6 @@
             ]
           },
           "mikrotik_mac_address": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "sas_name": {
             "type": [
               "null",
               "string"
@@ -1026,22 +1140,31 @@
               "string"
             ]
           },
-          "management_vlan": {
+          "customer_address": {
             "type": [
               "null",
               "string"
             ]
           },
-          "service_type": {
-            "$ref": "#/components/schemas/ServiceType"
-          },
-          "notes": {
+          "contact_person": {
             "type": [
               "null",
               "string"
             ]
           },
-          "station_id": {
+          "contact_person_phone_no": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "other_details": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "device_id": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "type": [
               "integer",
@@ -1096,12 +1219,6 @@
               "string"
             ]
           },
-          "destination_location": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
           "customer_line_code": {
             "type": [
               "null",
@@ -1135,10 +1252,10 @@
       "name": "Common"
     },
     {
-      "name": "Stations"
+      "name": "Devices"
     },
     {
-      "name": "Subscribers"
+      "name": "SubDevices"
     },
     {
       "name": "Users"

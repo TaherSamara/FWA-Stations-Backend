@@ -168,14 +168,14 @@ public class BaseController(IServiceProvider serviceProvider) : ControllerBase, 
         };
     }
 
-    protected static object GetStationDetails(Stations station)
+    protected static object GetDeviceDetails(Devices device)
     {
-        if (station is null) return null;
+        if (device is null) return null;
 
         return new
         {
-            station.id,
-            station.name
+            device.id,
+            device.name
         };
     }
 

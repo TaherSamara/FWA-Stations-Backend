@@ -7,36 +7,16 @@ namespace FWA_Stations.Data;
 public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
 {
     public virtual DbSet<Users> Users { get; set; }
-    public virtual DbSet<Stations> Stations { get; set; }
-    public virtual DbSet<Subscribers> Subscribers { get; set; }
+    public virtual DbSet<Devices> Devices { get; set; }
+    public virtual DbSet<SubDevices> SubDevices { get; set; }
+    public virtual DbSet<Warehouse> Warehouse { get; set; }
     public virtual DbSet<Permissions> Permissions { get; set; }
     public virtual DbSet<UserPermissions> UserPermissions { get; set; }
-    public virtual DbSet<Warehouse> Warehouse { get; set; }
 
     public virtual DbSet<ErrorLogs> ErrorLogs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Subscribers>(entity =>
-        {
-            entity.HasKey(sp => sp.id);
-
-            entity.HasOne(sp => sp.station)
-                  .WithMany(st => st.subscribers)
-                  .HasForeignKey(sp => sp.station_id)
-                  .OnDelete(DeleteBehavior.Restrict);
-        });
-
-        modelBuilder.Entity<Warehouse>(entity =>
-        {
-            entity.HasKey(w => w.id);
-
-            entity.HasOne(w => w.assigned_user)
-                  .WithMany()
-                  .HasForeignKey(w => w.assigned_user_id)
-                  .OnDelete(DeleteBehavior.SetNull);
-        });
-
         modelBuilder.Entity<UserPermissions>(entity =>
         {
             entity.HasKey(up => up.id);
@@ -50,6 +30,28 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
                   .WithMany(p => p.user_permissions)
                   .HasForeignKey(up => up.permission_id)
                   .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasQueryFilter(up => !up.user.is_delete);
+        });
+
+        modelBuilder.Entity<SubDevices>(entity =>
+        {
+            entity.HasKey(sp => sp.id);
+
+            entity.HasOne(sp => sp.device)
+                  .WithMany(d => d.sub_devices)
+                  .HasForeignKey(sp => sp.device_id)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Warehouse>(entity =>
+        {
+            entity.HasKey(w => w.id);
+
+            entity.HasOne(w => w.assigned_user)
+                  .WithMany()
+                  .HasForeignKey(w => w.assigned_user_id)
+                  .OnDelete(DeleteBehavior.SetNull);
         });
 
         ApplyCommonAuditRelationships(modelBuilder);

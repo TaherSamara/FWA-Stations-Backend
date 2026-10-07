@@ -42,62 +42,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FWA_Stations.Controllers.StationsController",
-    "Method": "Add",
-    "RelativePath": "api/Stations/add",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "FWA_Stations.ViewModels.Stations.StationsVM",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FWA_Stations.Controllers.StationsController",
-    "Method": "Delete",
-    "RelativePath": "api/Stations/delete/{id}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FWA_Stations.Controllers.StationsController",
-    "Method": "Edit",
-    "RelativePath": "api/Stations/edit/{id}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "model",
-        "Type": "FWA_Stations.ViewModels.Stations.StationsVM",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "FWA_Stations.Controllers.StationsController",
-    "Method": "List",
-    "RelativePath": "api/Stations/list",
+    "ContainingType": "FWA_Stations.Controllers.CommonController",
+    "Method": "GeneralSearch",
+    "RelativePath": "api/Common/search",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -106,40 +53,30 @@
         "Name": "q",
         "Type": "System.String",
         "IsRequired": false
-      },
-      {
-        "Name": "size",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "page",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FWA_Stations.Controllers.SubscribersController",
+    "ContainingType": "FWA_Stations.Controllers.DevicesController",
     "Method": "Add",
-    "RelativePath": "api/Subscribers/add",
+    "RelativePath": "api/Devices/add",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "model",
-        "Type": "FWA_Stations.ViewModels.Subscribers.SubscribersVM",
+        "Type": "FWA_Stations.ViewModels.Devices.DevicesVM",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FWA_Stations.Controllers.SubscribersController",
+    "ContainingType": "FWA_Stations.Controllers.DevicesController",
     "Method": "Delete",
-    "RelativePath": "api/Subscribers/delete/{id}",
+    "RelativePath": "api/Devices/delete/{id}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -153,9 +90,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FWA_Stations.Controllers.SubscribersController",
+    "ContainingType": "FWA_Stations.Controllers.DevicesController",
     "Method": "Edit",
-    "RelativePath": "api/Subscribers/edit/{id}",
+    "RelativePath": "api/Devices/edit/{id}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -167,32 +104,78 @@
       },
       {
         "Name": "model",
-        "Type": "FWA_Stations.ViewModels.Subscribers.SubscribersVM",
+        "Type": "FWA_Stations.ViewModels.Devices.DevicesVM",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FWA_Stations.Controllers.SubscribersController",
+    "ContainingType": "FWA_Stations.Controllers.DevicesController",
+    "Method": "Export",
+    "RelativePath": "api/Devices/export/{device_id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "device_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.DevicesController",
     "Method": "Import",
-    "RelativePath": "api/Subscribers/import",
+    "RelativePath": "api/Devices/import",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "file",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "device_type",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FWA_Stations.Controllers.SubscribersController",
+    "ContainingType": "FWA_Stations.Controllers.DevicesController",
     "Method": "List",
-    "RelativePath": "api/Subscribers/list",
+    "RelativePath": "api/Devices/list",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -213,22 +196,101 @@
         "IsRequired": false
       },
       {
-        "Name": "stationId",
+        "Name": "type",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.SubDevicesController",
+    "Method": "Add",
+    "RelativePath": "api/SubDevices/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "FWA_Stations.ViewModels.SubDevices.SubDevicesVM",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.SubDevicesController",
+    "Method": "Delete",
+    "RelativePath": "api/SubDevices/delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.SubDevicesController",
+    "Method": "Edit",
+    "RelativePath": "api/SubDevices/edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "FWA_Stations.ViewModels.SubDevices.SubDevicesVM",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.SubDevicesController",
+    "Method": "List",
+    "RelativePath": "api/SubDevices/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "q",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "size",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "device_id",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
-      },
-      {
-        "Name": "serviceTypes",
-        "Type": "System.String",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FWA_Stations.Controllers.SubscribersController",
+    "ContainingType": "FWA_Stations.Controllers.SubDevicesController",
     "Method": "Ping",
-    "RelativePath": "api/Subscribers/ping/{ip}",
+    "RelativePath": "api/SubDevices/ping/{ip}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -450,11 +512,6 @@
       {
         "Name": "page",
         "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "destinationLocation",
-        "Type": "System.String",
         "IsRequired": false
       }
     ],

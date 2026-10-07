@@ -22,6 +22,52 @@ namespace FWA_Stations.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FWA_Stations.Entities.Devices", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<DateTime?>("delete_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("delete_user_id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("insert_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("insert_user_id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("is_delete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("update_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("update_user_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("delete_user_id");
+
+                    b.HasIndex("insert_user_id");
+
+                    b.HasIndex("update_user_id");
+
+                    b.ToTable("Devices");
+                });
+
             modelBuilder.Entity("FWA_Stations.Entities.ErrorLogs", b =>
                 {
                     b.Property<int>("id")
@@ -105,7 +151,7 @@ namespace FWA_Stations.Migrations
                     b.ToTable("Permissions");
                 });
 
-            modelBuilder.Entity("FWA_Stations.Entities.Stations", b =>
+            modelBuilder.Entity("FWA_Stations.Entities.SubDevices", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -113,53 +159,25 @@ namespace FWA_Stations.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<DateTime?>("delete_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("delete_user_id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("insert_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("insert_user_id")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("is_delete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("name")
+                    b.Property<string>("connection_type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("update_date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("contact_person")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("update_user_id")
-                        .HasColumnType("int");
+                    b.Property<string>("contact_person_phone_no")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
-
-                    b.HasIndex("delete_user_id");
-
-                    b.HasIndex("insert_user_id");
-
-                    b.HasIndex("update_user_id");
-
-                    b.ToTable("Stations");
-                });
-
-            modelBuilder.Entity("FWA_Stations.Entities.Subscribers", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    b.Property<string>("customer_address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("delete_date")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("delete_user_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("device_id")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("insert_date")
@@ -192,26 +210,26 @@ namespace FWA_Stations.Migrations
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("notes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("odf_name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("odf_port")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("sas_name")
+                    b.Property<string>("order_number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("other_details")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("sas_port")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("service_type")
-                        .HasColumnType("int");
+                    b.Property<string>("speed")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("station_id")
-                        .HasColumnType("int");
+                    b.Property<string>("station_name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("unit_direction")
                         .HasColumnType("nvarchar(max)");
@@ -225,17 +243,20 @@ namespace FWA_Stations.Migrations
                     b.Property<int?>("update_user_id")
                         .HasColumnType("int");
 
+                    b.Property<string>("wan_ip")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("id");
 
                     b.HasIndex("delete_user_id");
 
-                    b.HasIndex("insert_user_id");
+                    b.HasIndex("device_id");
 
-                    b.HasIndex("station_id");
+                    b.HasIndex("insert_user_id");
 
                     b.HasIndex("update_user_id");
 
-                    b.ToTable("Subscribers");
+                    b.ToTable("SubDevices");
                 });
 
             modelBuilder.Entity("FWA_Stations.Entities.UserPermissions", b =>
@@ -376,6 +397,30 @@ namespace FWA_Stations.Migrations
                     b.ToTable("Warehouse");
                 });
 
+            modelBuilder.Entity("FWA_Stations.Entities.Devices", b =>
+                {
+                    b.HasOne("FWA_Stations.Entities.Users", "delete_user")
+                        .WithMany()
+                        .HasForeignKey("delete_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("FWA_Stations.Entities.Users", "insert_user")
+                        .WithMany()
+                        .HasForeignKey("insert_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("FWA_Stations.Entities.Users", "update_user")
+                        .WithMany()
+                        .HasForeignKey("update_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("delete_user");
+
+                    b.Navigation("insert_user");
+
+                    b.Navigation("update_user");
+                });
+
             modelBuilder.Entity("FWA_Stations.Entities.ErrorLogs", b =>
                 {
                     b.HasOne("FWA_Stations.Entities.Users", "delete_user")
@@ -400,48 +445,24 @@ namespace FWA_Stations.Migrations
                     b.Navigation("update_user");
                 });
 
-            modelBuilder.Entity("FWA_Stations.Entities.Stations", b =>
+            modelBuilder.Entity("FWA_Stations.Entities.SubDevices", b =>
                 {
                     b.HasOne("FWA_Stations.Entities.Users", "delete_user")
                         .WithMany()
                         .HasForeignKey("delete_user_id")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("FWA_Stations.Entities.Users", "insert_user")
-                        .WithMany()
-                        .HasForeignKey("insert_user_id")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("FWA_Stations.Entities.Users", "update_user")
-                        .WithMany()
-                        .HasForeignKey("update_user_id")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("delete_user");
-
-                    b.Navigation("insert_user");
-
-                    b.Navigation("update_user");
-                });
-
-            modelBuilder.Entity("FWA_Stations.Entities.Subscribers", b =>
-                {
-                    b.HasOne("FWA_Stations.Entities.Users", "delete_user")
-                        .WithMany()
-                        .HasForeignKey("delete_user_id")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("FWA_Stations.Entities.Users", "insert_user")
-                        .WithMany()
-                        .HasForeignKey("insert_user_id")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("FWA_Stations.Entities.Stations", "station")
-                        .WithMany("subscribers")
-                        .HasForeignKey("station_id")
+                    b.HasOne("FWA_Stations.Entities.Devices", "device")
+                        .WithMany("sub_devices")
+                        .HasForeignKey("device_id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("FWA_Stations.Entities.Users", "insert_user")
+                        .WithMany()
+                        .HasForeignKey("insert_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("FWA_Stations.Entities.Users", "update_user")
                         .WithMany()
                         .HasForeignKey("update_user_id")
@@ -449,9 +470,9 @@ namespace FWA_Stations.Migrations
 
                     b.Navigation("delete_user");
 
-                    b.Navigation("insert_user");
+                    b.Navigation("device");
 
-                    b.Navigation("station");
+                    b.Navigation("insert_user");
 
                     b.Navigation("update_user");
                 });
@@ -530,14 +551,14 @@ namespace FWA_Stations.Migrations
                     b.Navigation("update_user");
                 });
 
+            modelBuilder.Entity("FWA_Stations.Entities.Devices", b =>
+                {
+                    b.Navigation("sub_devices");
+                });
+
             modelBuilder.Entity("FWA_Stations.Entities.Permissions", b =>
                 {
                     b.Navigation("user_permissions");
-                });
-
-            modelBuilder.Entity("FWA_Stations.Entities.Stations", b =>
-                {
-                    b.Navigation("subscribers");
                 });
 
             modelBuilder.Entity("FWA_Stations.Entities.Users", b =>
