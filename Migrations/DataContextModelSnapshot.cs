@@ -126,6 +126,82 @@ namespace FWA_Stations.Migrations
                     b.ToTable("ErrorLogs");
                 });
 
+            modelBuilder.Entity("FWA_Stations.Entities.PathLinkOdfs", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int>("odf_sub_device_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("path_link_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("odf_sub_device_id");
+
+                    b.HasIndex("path_link_id", "order");
+
+                    b.ToTable("PathLinkOdfs");
+                });
+
+            modelBuilder.Entity("FWA_Stations.Entities.PathLinks", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<DateTime?>("delete_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("delete_user_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("from_sub_device_id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("insert_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("insert_user_id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("is_delete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("to_sub_device_id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("update_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("update_user_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("delete_user_id");
+
+                    b.HasIndex("from_sub_device_id");
+
+                    b.HasIndex("insert_user_id");
+
+                    b.HasIndex("to_sub_device_id");
+
+                    b.HasIndex("update_user_id");
+
+                    b.ToTable("PathLinks");
+                });
+
             modelBuilder.Entity("FWA_Stations.Entities.Permissions", b =>
                 {
                     b.Property<int>("id")
@@ -222,7 +298,13 @@ namespace FWA_Stations.Migrations
                     b.Property<string>("other_details")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("port")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("sas_port")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("slot")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("speed")
@@ -445,6 +527,65 @@ namespace FWA_Stations.Migrations
                     b.Navigation("update_user");
                 });
 
+            modelBuilder.Entity("FWA_Stations.Entities.PathLinkOdfs", b =>
+                {
+                    b.HasOne("FWA_Stations.Entities.SubDevices", "odf_sub_device")
+                        .WithMany()
+                        .HasForeignKey("odf_sub_device_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FWA_Stations.Entities.PathLinks", "path_link")
+                        .WithMany("odfs")
+                        .HasForeignKey("path_link_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("odf_sub_device");
+
+                    b.Navigation("path_link");
+                });
+
+            modelBuilder.Entity("FWA_Stations.Entities.PathLinks", b =>
+                {
+                    b.HasOne("FWA_Stations.Entities.Users", "delete_user")
+                        .WithMany()
+                        .HasForeignKey("delete_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("FWA_Stations.Entities.SubDevices", "from_sub_device")
+                        .WithMany("outgoing_path_links")
+                        .HasForeignKey("from_sub_device_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FWA_Stations.Entities.Users", "insert_user")
+                        .WithMany()
+                        .HasForeignKey("insert_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("FWA_Stations.Entities.SubDevices", "to_sub_device")
+                        .WithMany("incoming_path_links")
+                        .HasForeignKey("to_sub_device_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FWA_Stations.Entities.Users", "update_user")
+                        .WithMany()
+                        .HasForeignKey("update_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("delete_user");
+
+                    b.Navigation("from_sub_device");
+
+                    b.Navigation("insert_user");
+
+                    b.Navigation("to_sub_device");
+
+                    b.Navigation("update_user");
+                });
+
             modelBuilder.Entity("FWA_Stations.Entities.SubDevices", b =>
                 {
                     b.HasOne("FWA_Stations.Entities.Users", "delete_user")
@@ -556,9 +697,21 @@ namespace FWA_Stations.Migrations
                     b.Navigation("sub_devices");
                 });
 
+            modelBuilder.Entity("FWA_Stations.Entities.PathLinks", b =>
+                {
+                    b.Navigation("odfs");
+                });
+
             modelBuilder.Entity("FWA_Stations.Entities.Permissions", b =>
                 {
                     b.Navigation("user_permissions");
+                });
+
+            modelBuilder.Entity("FWA_Stations.Entities.SubDevices", b =>
+                {
+                    b.Navigation("incoming_path_links");
+
+                    b.Navigation("outgoing_path_links");
                 });
 
             modelBuilder.Entity("FWA_Stations.Entities.Users", b =>

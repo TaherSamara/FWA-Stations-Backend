@@ -2,6 +2,9 @@ namespace FWA_Stations.ViewModels.SubDevices;
 
 public class SubDevicesVM
 {
+    public string slot { get; set; }
+    public string port { get; set; }
+
     // Basic Information
     public string name { get; set; }
     public string station_name { get; set; }

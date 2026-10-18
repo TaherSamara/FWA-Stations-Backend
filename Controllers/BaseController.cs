@@ -175,7 +175,8 @@ public class BaseController(IServiceProvider serviceProvider) : ControllerBase, 
         return new
         {
             device.id,
-            device.name
+            device.name,
+            device.type
         };
     }
 

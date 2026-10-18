@@ -4,6 +4,9 @@ public class SubDevices : BaseEntity
 {
     public int id { get; set; }
 
+    public string slot { get; set; }
+    public string port { get; set; }
+
     // Basic Information
     public string name { get; set; }
     public string station_name { get; set; }
@@ -46,4 +49,7 @@ public class SubDevices : BaseEntity
     // Device Relation
     public int device_id { get; set; }
     public Devices device { get; set; }
+
+    public ICollection<PathLinks> outgoing_path_links { get; set; }
+    public ICollection<PathLinks> incoming_path_links { get; set; }
 }

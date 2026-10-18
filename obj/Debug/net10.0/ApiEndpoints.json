@@ -204,6 +204,144 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "Add",
+    "RelativePath": "api/PathLinks/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "FWA_Stations.ViewModels.PathLinks.PathLinksVM",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "Delete",
+    "RelativePath": "api/PathLinks/delete/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "Edit",
+    "RelativePath": "api/PathLinks/edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "FWA_Stations.ViewModels.PathLinks.PathLinksVM",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "Get",
+    "RelativePath": "api/PathLinks/get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "List",
+    "RelativePath": "api/PathLinks/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sub_device_id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "LookupDevices",
+    "RelativePath": "api/PathLinks/lookup/devices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "type",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "LookupPorts",
+    "RelativePath": "api/PathLinks/lookup/ports",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "device_id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "slot",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FWA_Stations.Controllers.PathLinksController",
+    "Method": "LookupSlots",
+    "RelativePath": "api/PathLinks/lookup/slots",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "device_id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FWA_Stations.Controllers.SubDevicesController",
     "Method": "Add",
     "RelativePath": "api/SubDevices/add",

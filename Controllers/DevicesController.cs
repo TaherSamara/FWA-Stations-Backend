@@ -139,6 +139,8 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
             string[] requiredHeaders =
             [
                 "device_name",
+                "slot",
+                "port",
                 "name",
                 "station_name",
                 "line_code",
@@ -187,30 +189,34 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
             for (int row = 2; row <= lastRow; row++)
             {
                 string deviceName = GetCellValue(worksheet, row, 1);
-                string name = GetCellValue(worksheet, row, 2);
-                string stationName = GetCellValue(worksheet, row, 3);
-                string lineCode = GetCellValue(worksheet, row, 4);
-                string orderNumber = GetCellValue(worksheet, row, 5);
-                string unitType = GetCellValue(worksheet, row, 6);
-                string unitDirection = GetCellValue(worksheet, row, 7);
-                string linkMacAddress = GetCellValue(worksheet, row, 8);
-                string connectionType = GetCellValue(worksheet, row, 9);
-                string speed = GetCellValue(worksheet, row, 10);
-                string managementIp = GetCellValue(worksheet, row, 11);
-                string managementVlan = GetCellValue(worksheet, row, 12);
-                string wanIp = GetCellValue(worksheet, row, 13);
-                string mikrotikId = GetCellValue(worksheet, row, 14);
-                string mikrotikMacAddress = GetCellValue(worksheet, row, 15);
-                string sasPort = GetCellValue(worksheet, row, 16);
-                string odfName = GetCellValue(worksheet, row, 17);
-                string odfPort = GetCellValue(worksheet, row, 18);
-                string customerAddress = GetCellValue(worksheet, row, 19);
-                string contactPerson = GetCellValue(worksheet, row, 20);
-                string contactPersonPhoneNo = GetCellValue(worksheet, row, 21);
-                string otherDetails = GetCellValue(worksheet, row, 22);
+                string slot = GetCellValue(worksheet, row, 2);
+                string port = GetCellValue(worksheet, row, 3);
+                string name = GetCellValue(worksheet, row, 4);
+                string stationName = GetCellValue(worksheet, row, 5);
+                string lineCode = GetCellValue(worksheet, row, 6);
+                string orderNumber = GetCellValue(worksheet, row, 7);
+                string unitType = GetCellValue(worksheet, row, 8);
+                string unitDirection = GetCellValue(worksheet, row, 9);
+                string linkMacAddress = GetCellValue(worksheet, row, 10);
+                string connectionType = GetCellValue(worksheet, row, 11);
+                string speed = GetCellValue(worksheet, row, 12);
+                string managementIp = GetCellValue(worksheet, row, 13);
+                string managementVlan = GetCellValue(worksheet, row, 14);
+                string wanIp = GetCellValue(worksheet, row, 15);
+                string mikrotikId = GetCellValue(worksheet, row, 16);
+                string mikrotikMacAddress = GetCellValue(worksheet, row, 17);
+                string sasPort = GetCellValue(worksheet, row, 18);
+                string odfName = GetCellValue(worksheet, row, 19);
+                string odfPort = GetCellValue(worksheet, row, 20);
+                string customerAddress = GetCellValue(worksheet, row, 21);
+                string contactPerson = GetCellValue(worksheet, row, 22);
+                string contactPersonPhoneNo = GetCellValue(worksheet, row, 23);
+                string otherDetails = GetCellValue(worksheet, row, 24);
 
                 bool isEmptyRow =
                     string.IsNullOrWhiteSpace(deviceName) &&
+                    string.IsNullOrWhiteSpace(slot) &&
+                    string.IsNullOrWhiteSpace(port) &&
                     string.IsNullOrWhiteSpace(name) &&
                     string.IsNullOrWhiteSpace(stationName) &&
                     string.IsNullOrWhiteSpace(lineCode) &&
@@ -241,6 +247,8 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
                 {
                     row_number = row,
                     device_name = deviceName,
+                    slot = slot,
+                    port = port,
                     name = name,
                     station_name = stationName,
                     line_code = lineCode,
@@ -400,7 +408,9 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
 
         var subDevices = await db.SubDevices.AsNoTracking()
             .Where(x => x.device_id == device_id)
-            .OrderBy(x => x.name)
+            .OrderBy(x => x.slot)
+            .ThenBy(x => x.port)
+            .ThenBy(x => x.name)
             .ToListAsync();
 
         using var workbook = new XLWorkbook();
@@ -409,6 +419,8 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
         string[] headers =
         [
             "device_name",
+            "slot",
+            "port",
             "name",
             "station_name",
             "line_code",
@@ -464,6 +476,8 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
             int column = 1;
 
             worksheet.Cell(row, column++).Value = device.name ?? string.Empty;
+            worksheet.Cell(row, column++).Value = subDevice.slot ?? string.Empty;
+            worksheet.Cell(row, column++).Value = subDevice.port ?? string.Empty;
             worksheet.Cell(row, column++).Value = subDevice.name ?? string.Empty;
             worksheet.Cell(row, column++).Value = subDevice.station_name ?? string.Empty;
             worksheet.Cell(row, column++).Value = subDevice.line_code ?? string.Empty;
@@ -512,7 +526,7 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
                 }
             }
 
-            int[] textColumns = [4, 5, 8, 10, 11, 12, 13, 14, 15, 16, 18, 21];
+            int[] textColumns = [2, 3, 6, 7, 10, 12, 13, 14, 15, 16, 17, 18, 20, 23];
 
             foreach (int textColumn in textColumns)
                 worksheet.Range(2, textColumn, lastDataRow, textColumn).Style.NumberFormat.Format = "@";
@@ -534,11 +548,11 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
                 column.Width = 35;
         }
 
-        worksheet.Column(19).Width = 30;
-        worksheet.Column(22).Width = 35;
+        worksheet.Column(21).Width = 30;
+        worksheet.Column(24).Width = 35;
 
-        worksheet.Column(19).Style.Alignment.WrapText = true;
-        worksheet.Column(22).Style.Alignment.WrapText = true;
+        worksheet.Column(21).Style.Alignment.WrapText = true;
+        worksheet.Column(24).Style.Alignment.WrapText = true;
 
         worksheet.RowsUsed().Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
 
@@ -564,6 +578,8 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
 
     private static void ApplyImportValues(SubDevices subDevice, SubDeviceImportRow row)
     {
+        subDevice.slot = row.slot;
+        subDevice.port = row.port;
         subDevice.name = row.name;
         subDevice.station_name = row.station_name;
         subDevice.line_code = row.line_code;
@@ -592,6 +608,8 @@ public class DevicesController(IServiceProvider serviceProvider) : BaseControlle
         public int row_number { get; init; }
 
         public string device_name { get; init; }
+        public string slot { get; init; }
+        public string port { get; init; }
         public string name { get; init; }
         public string station_name { get; init; }
         public string line_code { get; init; }

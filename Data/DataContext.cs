@@ -9,6 +9,8 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     public virtual DbSet<Users> Users { get; set; }
     public virtual DbSet<Devices> Devices { get; set; }
     public virtual DbSet<SubDevices> SubDevices { get; set; }
+    public virtual DbSet<PathLinks> PathLinks { get; set; }
+    public virtual DbSet<PathLinkOdfs> PathLinkOdfs { get; set; }
     public virtual DbSet<Warehouse> Warehouse { get; set; }
     public virtual DbSet<Permissions> Permissions { get; set; }
     public virtual DbSet<UserPermissions> UserPermissions { get; set; }
@@ -42,6 +44,40 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
                   .WithMany(d => d.sub_devices)
                   .HasForeignKey(sp => sp.device_id)
                   .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<PathLinks>(entity =>
+        {
+            entity.HasKey(p => p.id);
+
+            entity.HasOne(p => p.from_sub_device)
+                  .WithMany(s => s.outgoing_path_links)
+                  .HasForeignKey(p => p.from_sub_device_id)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(p => p.to_sub_device)
+                  .WithMany(s => s.incoming_path_links)
+                  .HasForeignKey(p => p.to_sub_device_id)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<PathLinkOdfs>(entity =>
+        {
+            entity.HasKey(o => o.id);
+
+            entity.HasOne(o => o.path_link)
+                  .WithMany(p => p.odfs)
+                  .HasForeignKey(o => o.path_link_id)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(o => o.odf_sub_device)
+                  .WithMany()
+                  .HasForeignKey(o => o.odf_sub_device_id)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasIndex(o => new { o.path_link_id, o.order });
+
+            entity.HasQueryFilter(o => !o.path_link.is_delete);
         });
 
         modelBuilder.Entity<Warehouse>(entity =>

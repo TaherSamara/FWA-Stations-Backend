@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9klPf8kzUys=",
+  "dgSpecHash": "HSm8T0ULsgc=",
   "success": true,
   "projectFilePath": "D:\\Paltel\\FWA-System\\FWA-Backend\\FWA-Stations.csproj",
   "expectedPackageFiles": [
@@ -61,7 +61,7 @@
     "C:\\Users\\CHIP2026\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
     "C:\\Users\\CHIP2026\\.nuget\\packages\\system.io.packaging\\8.0.1\\system.io.packaging.8.0.1.nupkg.sha512",
     "C:\\Users\\CHIP2026\\.nuget\\packages\\system.memory.data\\8.0.1\\system.memory.data.8.0.1.nupkg.sha512",
-    "C:\\Users\\CHIP2026\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
+    "C:\\Users\\CHIP2026\\.nuget\\packages\\system.security.cryptography.pkcs\\10.0.13\\system.security.cryptography.pkcs.10.0.13.nupkg.sha512",
     "C:\\Users\\CHIP2026\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512"
   ],
   "logs": []

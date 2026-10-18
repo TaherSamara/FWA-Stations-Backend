@@ -85,6 +85,10 @@
             "Scalar.AspNetCore": {
               "target": "Package",
               "version": "[2.12.36, )"
+            },
+            "System.Security.Cryptography.Pkcs": {
+              "target": "Package",
+              "version": "[10.0.13, )"
             }
           },
           "imports": [
@@ -106,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

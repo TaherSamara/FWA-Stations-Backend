@@ -30,6 +30,8 @@ public class SubDevicesController(IServiceProvider serviceProvider) : BaseContro
 
             query = query.Where(x =>
                 EF.Functions.Like(x.name, pattern) ||
+                EF.Functions.Like(x.slot, pattern) ||
+                EF.Functions.Like(x.port, pattern) ||
                 EF.Functions.Like(x.station_name, pattern) ||
                 EF.Functions.Like(x.line_code, pattern) ||
                 EF.Functions.Like(x.order_number, pattern) ||
@@ -52,6 +54,9 @@ public class SubDevicesController(IServiceProvider serviceProvider) : BaseContro
             .Select(x => new
             {
                 x.id,
+
+                x.slot,
+                x.port,
 
                 x.name,
                 x.station_name,
@@ -126,6 +131,9 @@ public class SubDevicesController(IServiceProvider serviceProvider) : BaseContro
 
         var newSubDevice = new SubDevices
         {
+            slot = model.slot,
+            port = model.port,
+
             name = model.name,
             station_name = model.station_name,
             line_code = model.line_code,
@@ -195,6 +203,9 @@ public class SubDevicesController(IServiceProvider serviceProvider) : BaseContro
                 false,
                 "Device Not Found!"));
         }
+
+        subDevice.slot = model.slot;
+        subDevice.port = model.port;
 
         subDevice.name = model.name;
         subDevice.station_name = model.station_name;

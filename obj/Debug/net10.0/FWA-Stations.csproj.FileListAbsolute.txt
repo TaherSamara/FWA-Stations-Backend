@@ -851,5 +851,4 @@ D:\Paltel\FWA-System\FWA-Backend\obj\Debug\net10.0\refint\FWA-Stations.dll
 D:\Paltel\FWA-System\FWA-Backend\obj\Debug\net10.0\FWA-Stations.pdb
 D:\Paltel\FWA-System\FWA-Backend\obj\Debug\net10.0\FWA-Stations.genruntimeconfig.cache
 D:\Paltel\FWA-System\FWA-Backend\obj\Debug\net10.0\ref\FWA-Stations.dll
-D:\Paltel\FWA-System\FWA-Backend\bin\Debug\net10.0\dotnet-tools.json
 D:\Paltel\FWA-System\FWA-Backend\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

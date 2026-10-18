@@ -367,6 +367,250 @@
         }
       }
     },
+    "/api/PathLinks/list": {
+      "get": {
+        "tags": [
+          "PathLinks"
+        ],
+        "parameters": [
+          {
+            "name": "sub_device_id",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PathLinks/get/{id}": {
+      "get": {
+        "tags": [
+          "PathLinks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PathLinks/add": {
+      "post": {
+        "tags": [
+          "PathLinks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathLinksVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathLinksVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathLinksVM"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PathLinks/edit/{id}": {
+      "post": {
+        "tags": [
+          "PathLinks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathLinksVM"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathLinksVM"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathLinksVM"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PathLinks/delete/{id}": {
+      "post": {
+        "tags": [
+          "PathLinks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PathLinks/lookup/devices": {
+      "get": {
+        "tags": [
+          "PathLinks"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PathLinks/lookup/slots": {
+      "get": {
+        "tags": [
+          "PathLinks"
+        ],
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PathLinks/lookup/ports": {
+      "get": {
+        "tags": [
+          "PathLinks"
+        ],
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "slot",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/SubDevices/list": {
       "get": {
         "tags": [
@@ -1035,9 +1279,56 @@
           }
         }
       },
+      "PathLinksVM": {
+        "type": "object",
+        "properties": {
+          "from_sub_device_id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "to_sub_device_id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "odf_sub_device_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        }
+      },
       "SubDevicesVM": {
         "type": "object",
         "properties": {
+          "slot": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "port": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
           "name": {
             "type": [
               "null",
@@ -1253,6 +1544,9 @@
     },
     {
       "name": "Devices"
+    },
+    {
+      "name": "PathLinks"
     },
     {
       "name": "SubDevices"
